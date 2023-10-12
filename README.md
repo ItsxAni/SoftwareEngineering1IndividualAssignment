@@ -10,3 +10,5 @@ Steps to Run Program:
 5. python3 app.py
 
 Ensure that you have all the files downloaded. Screenshots will be provided in another folder with the program running
+
+ER Diagram is within the screenshots folder added. 
