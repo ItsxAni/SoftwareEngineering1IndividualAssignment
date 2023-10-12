@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... your existing HTML code ... -->
+</head>
+<body>
+    <h1>Manage Students</h1>
+
+    <!-- Form to Add Students -->
+    <form action="/" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="credits_earned">Credits Earned:</label>
+        <input type="number" id="credits_earned" name="credits_earned" required>
+        <!-- Add input fields for student ID and courses -->
+        <label for="student_id">ID:</label>
+        <input type="text" id="student_id" name="student_id" required>
+        <label for="courses">Courses (comma-separated):</label>
+        <input type="text" id="courses" name="courses" required>
+        <button type="submit">Add Student</button>
+    </form>
+
+    <!-- Display Students -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Credits Earned</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.credits_earned }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

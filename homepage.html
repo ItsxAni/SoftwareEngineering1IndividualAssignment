@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>All Information</title>
+</head>
+<body>
+    <h1>All Information</h1>
+
+    <h2>Students</h2>
+    {% if students %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Credits Earned</th>
+            <th>Courses</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.credits_earned }}</td>
+            <td>
+                <a href="/update_student/{{ student.id }}">Update</a> <!-- Link to update student page -->
+                <a href="/delete_student/{{ student.id }}">Delete</a> <!-- Link to delete student -->
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No student information available.</p>
+    {% endif %}
+
+    <h2>Instructors</h2>
+{% if instructors %}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department</th>
+    </tr>
+    {% for instructor in instructors %}
+    <tr>
+        <td>{{ instructor.id }}</td>
+        <td>{{ instructor.name }}</td>
+        <td>{{ instructor.department }}</td>
+        <td>
+            <a href="/update_instructor/{{ instructor.id }}">Update</a> <!-- Link to update instructor page -->
+            <a href="/delete_instructor/{{ instructor.id }}">Delete</a> <!-- Link to delete instructor -->
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No instructor information available.</p>
+{% endif %}
+
+
+    <h2>Add Student</h2>
+    <form action="/add_student" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+        <br>
+
+        <label for="student_id">Student id</label>
+        <input type="text" name="student_id" id="student_id" required>
+        <br>
+
+        <label for="student_credits">Credits Earned:</label>
+        <input type="number" name="credits_earned" id="student_credits" required>
+        <br>
+
+        <label for="student_courses">Courses (comma-separated):</label>
+        <input type="text" name="courses" id="student_courses">
+        <br>
+
+        <button type="submit">Add Student</button>
+    </form>
+    
+    <h2>Courses</h2>
+    {% if courses %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Instructor</th>
+        </tr>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.id }}</td>
+            <td>{{ course.title }}</td>
+            <td>{{ course.instructor.name }}</td>
+            <td>
+                 <a href="/update_course/{{ course.id }}">Update</a> <!-- Link to update course page -->
+                <a href="/delete_course/{{ course.id }}">Delete</a> <!-- Link to delete course -->
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No course information available.</p>
+    {% endif %}
+    
+    <h2>Add Courses</h2>
+    <form action="/add_course" method="post">
+        <label for="title">Course Title:</label>
+        <input type="text" name="title" id="title" required>
+        <br>
+    
+        <label for="course_id">Course ID</label>
+        <input type="number" name="course_id" id="course_id" required>
+        <br>
+    
+        <label for="instructor">Instructor:</label>
+        <input type="text" name="instructor" id="instructor" required>
+        <br>
+    
+        <label for="instructor_id">Instructor ID:</label>
+        <input type="number" name="instructor_id" id="instructor_id" required>
+        <br>
+    
+        <button type="submit">Add Course</button>
+    </form>
+    
+    <h2>Enter Grades</h2>
+    <form action="/enter_grades" method="post">
+        <label for="student_id">Student ID:</label>
+        <input type="text" name="student_id" id="student_id" required>
+        <br>
+        
+        <label for="course_id">Course ID:</label>
+        <input type="text" name="course_id" id="course_id" required>
+        <br>
+        
+        <label for="grade">Grade:</label>
+        <input type="number" name="grade" id="grade" required>
+        <br>
+        
+        <button type="submit">Enter Grade</button>
+    </form>
+
+    <h2>Add Instructor</h2>
+    <form action="/add_instructor" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+        <br>
+
+        <label for="department">Department:</label>
+        <input type="text" name="department" id="department" required>
+        <br>
+
+            <!-- Include an input field for the instructor's ID -->
+    <label for="instructor_id">Instructor ID:</label>
+    <input type="number" name="instructor_id" id="instructor_id" required>
+    <br>
+
+        <button type="submit">Add Instructor</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <title>Manage Instructors</title>
+</head>
+<body>
+    <h1>Manage Instructors</h1>
+
+    <!-- Form to Add Instructors -->
+    <form action="/add_instructor" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required>
+        <button type="submit">Add Instructor</button>
+    </form>
+
+    <!-- Display Instructors -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Department</th>
+        </tr>
+        {% for instructor in instructors %}
+        <tr>
+            <td>{{ instructor.id }}</td>
+            <td>{{ instructor.name }}</td>
+            <td>{{ instructor.department }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

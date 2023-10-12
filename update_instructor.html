@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Update Instructor</title>
+</head>
+<body>
+    <h1>Update Instructor</h1>
+    
+    <form action="/update_instructor/{{ instructor.id }}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="{{ instructor.name }}" required>
+        <br>
+
+        <label for="department">Department:</label>
+        <input type="text" name="department" id="department" value="{{ instructor.department }}" required>
+        <br>
+
+        <button type="submit">Update Instructor</button>
+    </form>
+</body>
+</html>
